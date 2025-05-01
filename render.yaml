@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: laravel-startup
+    env: php
+    plan: free
+    buildCommand: |
+      composer install
+      php artisan config:cache
+    startCommand: php artisan serve --host 0.0.0.0 --port 10000
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_KEY
+        sync: false
+    publishPath: public
